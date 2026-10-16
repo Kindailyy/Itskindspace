@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday</title>
+<style>
+:root{--page:#12161c;--bg:#fbe4de;--grid:rgba(238,120,120,.14);--ink:#2a1a1a;--red:#f26b63;--flag1:#f27a7a;--flag2:#f7a3a8;
+color-scheme:light;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#0b0d11}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--page);display:grid;place-items:center;font-family:"Trebuchet MS","Arial Rounded MT Bold",system-ui,sans-serif}
+.scene{container-type:inline-size;position:relative;width:min(96vw,960px);aspect-ratio:2/1;background:var(--bg);border-radius:12px;overflow:hidden;
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:4cqw 4cqw}
+.abs{position:absolute}
+/* bunting */
+.bunt{left:0;top:0;width:100%;height:20cqw;pointer-events:none}
+.bunt polygon{transform-box:fill-box;transform-origin:50% 0;animation:sway 2.6s ease-in-out infinite alternate}
+.bunt polygon:nth-child(even){animation-delay:-1.3s}
+@keyframes sway{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+/* title */
+.title{left:7cqw;top:16cqw;line-height:.9;font-weight:900}
+.title b{display:block;font-size:12cqw;-webkit-text-stroke:.7cqw var(--ink);paint-order:stroke fill;text-shadow:.7cqw .7cqw 0 var(--ink);
+opacity:0;transform:translateY(-3cqw) scale(.85);animation:pop .7s cubic-bezier(.3,1.6,.5,1) forwards}
+.title .h{color:#fff}
+.title .b{color:var(--red);animation-delay:.3s;margin-top:.4cqw}
+.hat{left:20cqw;top:9cqw;width:9cqw;transform:rotate(-8deg);opacity:0;animation:pop .6s .8s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+/* date pill */
+.date{left:9cqw;top:42cqw;display:flex;align-items:center;gap:1.4cqw;padding:.9cqw 3cqw;border:.5cqw solid var(--ink);border-radius:99cqw;
+background:var(--red);color:var(--ink);font:italic 800 2.6cqw inherit;font-family:inherit;box-shadow:.4cqw .4cqw 0 var(--ink);
+opacity:0;animation:pop .6s 1s forwards;cursor:pointer}
+.date i{font-style:normal;font-size:2cqw}
+/* bear circle */
+.ring{right:6cqw;top:17cqw;width:30cqw;height:30cqw;border:.45cqw solid var(--ink);border-radius:50%;opacity:0;transform:scale(0);animation:pop .8s 1.2s cubic-bezier(.3,1.6,.5,1) forwards}
+.ring svg{position:absolute;left:-3cqw;top:-8cqw;width:36cqw;animation:bob 1.8s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translateY(-1cqw) rotate(-2deg)}to{transform:translateY(1cqw) rotate(2deg)}}
+.balloon{width:9cqw;height:11cqw;border-radius:50% 50% 48% 48%;background:var(--red);border:.4cqw solid var(--ink);animation:float 3s ease-in-out infinite alternate}
+.balloon:after{content:"";position:absolute;left:50%;top:100%;width:.3cqw;height:9cqw;background:var(--ink)}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-2cqw)}}
+.name{right:12cqw;bottom:2.5cqw;padding:.7cqw 5cqw;border:.5cqw solid var(--ink);border-radius:99cqw;background:var(--red);color:#fff;
+font:800 2.4cqw inherit;font-family:inherit;box-shadow:.4cqw .4cqw 0 var(--ink);cursor:pointer;opacity:0;animation:pop .6s 1.8s forwards}
+.name:active,.date:active{transform:translate(.3cqw,.3cqw)}
+.star{color:var(--ink);font-size:3cqw;animation:tw 1.4s ease-in-out infinite alternate}
+@keyframes tw{from{transform:scale(0)}to{transform:scale(1.1)}}
+/* confetti */
+.c{position:absolute;top:-3cqw;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(60cqw) rotate(500deg)}}
+/* dim + card */
+.dim{position:absolute;inset:0;background:rgba(30,20,20,.6);display:none;place-items:center;z-index:5}
+.dim.on{display:grid}
+.card{position:relative;width:62%;aspect-ratio:1.5;background:#fbf0d9;border-radius:2cqw;display:grid;grid-template-columns:1fr 1fr;padding:3cqw;
+box-shadow:0 1cqw 4cqw rgba(0,0,0,.4);animation:cardin .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes cardin{from{transform:scale(.3);opacity:0}}
+.card h3{position:absolute;left:4cqw;top:1.6cqw;margin:0;font:italic 2.8cqw Georgia,serif;color:#5a2a2a}
+.photo{background:#f6a6bd;border-radius:1cqw;margin-top:3.5cqw;display:grid;place-items:center;overflow:hidden}
+.photo svg{width:90%}
+.right{border-left:.2cqw solid #c9b58f;margin:3.5cqw 0 0 2cqw;position:relative;font:italic 2cqw Georgia,serif;color:#6b4a3a;padding:1cqw 0 0 2cqw}
+.right small{display:block;margin-top:1cqw;font-size:1.7cqw}
+.right .pal{position:absolute;right:2cqw;top:0;font-size:9cqw}
+.x{position:absolute;right:-1.2cqw;top:-1.2cqw;width:3.4cqw;height:3.4cqw;border-radius:50%;border:.2cqw solid #fff;background:#222;color:#fff;font:700 2cqw/1 sans-serif;cursor:pointer;display:grid;place-items:center;padding:0}
+.heart{position:absolute;bottom:0;color:#f26b8a;animation:up 3s ease-in infinite;opacity:0}
+@keyframes up{20%{opacity:1}to{transform:translateY(-22cqw);opacity:0}}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+
+  <svg class="abs bunt" viewBox="0 0 960 190" preserveAspectRatio="none" id="bunt">
+    <path d="M0 10 Q240 120 480 14 T960 10" fill="none" stroke="#2a1a1a" stroke-width="2" opacity=".5"/>
+  </svg>
+
+  <div class="title"><b class="h">Happy</b><b class="b">Birthday</b></div>
+  <svg class="abs hat" viewBox="0 0 100 80"><path d="M10 70 Q45 -5 90 60 Z" fill="#f26b63" stroke="#2a1a1a" stroke-width="5" stroke-linejoin="round"/><circle cx="78" cy="14" r="7" fill="#2a1a1a"/><path d="M5 72 Q50 82 92 62" stroke="#2a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+
+  <button class="abs date" id="dateBtn"><span class="star">★</span><span id="dateTxt">06 March 1998</span><span class="star">★</span></button>
+
+  <div class="abs balloon" style="right:3cqw;top:12cqw;animation-delay:-1s"></div>
+  <div class="abs balloon" style="right:1cqw;top:26cqw;transform:scale(.8)"></div>
+  <div class="abs balloon" style="right:38cqw;top:15cqw;background:#f7a3a8"></div>
+
+  <div class="abs ring">
+    <svg viewBox="0 0 200 200" id="bearBig"><use href="#bear"/></svg>
+  </div>
+  <button class="abs name" id="nameBtn">Cutie</button>
+
+  <div class="dim" id="dim">
+    <div class="card">
+      <h3>To you <span style="color:#f26b8a">♥</span></h3>
+      <button class="x" id="x" aria-label="Close">×</button>
+      <div class="photo"><svg viewBox="0 0 200 200"><use href="#bear"/></svg></div>
+      <div class="right"><span class="pal">🦔</span>You<small id="msg">Wishing you a day full of joy &amp; cake!</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- bear drawing -->
+<svg width="0" height="0" style="position:absolute"><defs>
+<g id="bear" stroke="#4a2a18" stroke-width="3" stroke-linejoin="round">
+  <ellipse cx="95" cy="145" rx="42" ry="40" fill="#b8703c"/>
+  <ellipse cx="95" cy="152" rx="26" ry="28" fill="#f0c89a" stroke="none"/>
+  <circle cx="62" cy="78" r="14" fill="#b8703c"/><circle cx="128" cy="78" r="14" fill="#b8703c"/>
+  <circle cx="62" cy="78" r="7" fill="#f0c89a" stroke="none"/><circle cx="128" cy="78" r="7" fill="#f0c89a" stroke="none"/>
+  <circle cx="95" cy="100" r="40" fill="#b8703c"/>
+  <ellipse cx="95" cy="112" rx="17" ry="13" fill="#f0c89a"/>
+  <circle cx="80" cy="96" r="4" fill="#2a1a1a" stroke="none"/><circle cx="110" cy="96" r="4" fill="#2a1a1a" stroke="none"/>
+  <ellipse cx="95" cy="106" rx="5" ry="3.5" fill="#2a1a1a" stroke="none"/>
+  <path d="M88 116 Q95 123 102 116" fill="none"/>
+  <path d="M82 66 L100 30 L118 66 Z" fill="#6fb6e8"/><circle cx="100" cy="28" r="5" fill="#ffd166"/>
+  <path d="M130 140 Q150 128 160 128" stroke="#b8703c" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M130 140 Q150 128 160 128" stroke="#4a2a18" stroke-width="3" stroke-linecap="round" fill="none" opacity=".0"/>
+  <rect x="146" y="112" width="40" height="18" rx="4" fill="#f7a3a8"/><rect x="146" y="106" width="40" height="8" rx="4" fill="#fff"/>
+  <path d="M155 106v-10M166 106v-12M177 106v-10" stroke="#ffd166" stroke-width="3"/>
+  <path d="M60 140 Q50 150 58 160" stroke="#b8703c" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <ellipse cx="75" cy="184" rx="14" ry="9" fill="#b8703c"/><ellipse cx="115" cy="184" rx="14" ry="9" fill="#b8703c"/>
+</g></defs></svg>
+
+<script>
+// ===== EDIT THESE =====
+var CONFIG = { date: "06 March 1998", name: "Cutie", message: "Wishing you a day full of joy & cake!" };
+// ======================
+var q = new URLSearchParams(location.search);
+if (q.get("date")) CONFIG.date = q.get("date");
+if (q.get("name")) CONFIG.name = q.get("name");
+document.getElementById("dateTxt").textContent = CONFIG.date;
+document.getElementById("nameBtn").textContent = CONFIG.name;
+document.getElementById("msg").textContent = CONFIG.message;
+
+// tap the date to change it (stays on screen only)
+document.getElementById("dateBtn").onclick = function () {
+  var v = prompt("Birthday date:", CONFIG.date);
+  if (v) { CONFIG.date = v; document.getElementById("dateTxt").textContent = v; }
+};
+
+// bunting flags along a curve
+var svg = document.getElementById("bunt"), cols = ["#f27a7a", "#f7a3a8"], ns = "http://www.w3.org/2000/svg";
+for (var i = 0; i < 18; i++) {
+  var x = 20 + i * 52, y = 10 + 85 * Math.sin((x / 960) * Math.PI) * 0.6 + (x < 480 ? 0 : 0);
+  var p = document.createElementNS(ns, "polygon");
+  p.setAttribute("points", (x - 20) + "," + y + " " + (x + 20) + "," + y + " " + x + "," + (y + 42));
+  p.setAttribute("fill", cols[i % 2]);
+  svg.appendChild(p);
+}
+
+// confetti + hearts
+var scene = document.getElementById("scene"), cc = ["#f26b63", "#f7a3a8", "#ffd166", "#6fb6e8", "#8bd17c"];
+function confetti() {
+  var d = document.createElement("div"); d.className = "c";
+  var s = 0.8 + Math.random() * 1.2;
+  d.style.cssText = "left:" + Math.random() * 100 + "%;width:" + s + "cqw;height:" + (s * 1.6) + "cqw;background:" + cc[Math.random() * 5 | 0] +
+    ";animation-duration:" + (3 + Math.random() * 3) + "s";
+  scene.appendChild(d); setTimeout(function () { d.remove(); }, 6500);
+}
+setInterval(confetti, 220);
+var card = document.querySelector(".right");
+setInterval(function () {
+  if (!dim.classList.contains("on")) return;
+  var h = document.createElement("span"); h.className = "heart"; h.textContent = "♥";
+  h.style.cssText = "left:" + Math.random() * 80 + "%;font-size:" + (1.5 + Math.random() * 2) + "cqw";
+  card.appendChild(h); setTimeout(function () { h.remove(); }, 3000);
+}, 250);
+
+// open / close card
+var dim = document.getElementById("dim");
+function open_() { dim.classList.add("on"); }
+document.getElementById("nameBtn").onclick = open_;
+document.getElementById("bearBig").onclick = open_;
+document.getElementById("x").onclick = function () { dim.classList.remove("on"); };
+</script>
+</body>
+</html>
