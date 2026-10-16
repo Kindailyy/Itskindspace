@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Happy Birthday</title>
+<title>Happy Birthday Yan Paing</title>
+
 <style>
 :root{--page:#12161c;--bg:#fbe4de;--grid:rgba(238,120,120,.14);--ink:#2a1a1a;--red:#f26b63;--flag1:#f27a7a;--flag2:#f7a3a8;
 color-scheme:light;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
@@ -33,6 +34,13 @@ background:var(--red);color:var(--ink);font:italic 800 2.6cqw inherit;font-famil
 opacity:0;animation:pop .6s 1s forwards;cursor:pointer}
 .date i{font-style:normal;font-size:2cqw}
 /* bear circle */
+.circle-img {
+  width: 100%;              /* Fills the container width */
+  height: 100%;             /* Fills the container height */
+  border-radius: 50%;       /* Ensures the image itself is rounded */
+  object-fit: cover;        /* CRITICAL: Prevents squishing/distortion */
+  object-position: center;  /* Centers the focus of the image */
+}
 .ring{right:6cqw;top:17cqw;width:30cqw;height:30cqw;border:.45cqw solid var(--ink);border-radius:50%;opacity:0;transform:scale(0);animation:pop .8s 1.2s cubic-bezier(.3,1.6,.5,1) forwards}
 .ring svg{position:absolute;left:-3cqw;top:-8cqw;width:36cqw;animation:bob 1.8s ease-in-out infinite alternate}
 @keyframes bob{from{transform:translateY(-1cqw) rotate(-2deg)}to{transform:translateY(1cqw) rotate(2deg)}}
@@ -60,9 +68,38 @@ box-shadow:0 1cqw 4cqw rgba(0,0,0,.4);animation:cardin .5s cubic-bezier(.3,1.5,.
 .right small{display:block;margin-top:1cqw;font-size:1.7cqw}
 .right .pal{position:absolute;right:2cqw;top:0;font-size:9cqw}
 .x{position:absolute;right:-1.2cqw;top:-1.2cqw;width:3.4cqw;height:3.4cqw;border-radius:50%;border:.2cqw solid #fff;background:#222;color:#fff;font:700 2cqw/1 sans-serif;cursor:pointer;display:grid;place-items:center;padding:0}
-.heart{position:absolute;bottom:0;color:#f26b8a;animation:up 3s ease-in infinite;opacity:0}
-@keyframes up{20%{opacity:1}to{transform:translateY(-22cqw);opacity:0}}
+/* Confetti floating inside the birthday card */
+.heart {
+  position: absolute;
+  bottom: 0;
+  width: 1cqw;
+  height: 1.6cqw;
+  background: #f26b63;
+  animation: cardConfetti 3s ease-in infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes cardConfetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-22cqw) rotate(540deg);
+    opacity: 0;
+  }
+}
 </style>
+ <!-- Birthday Background Music -->
+  <!-- Put your music file in the same folder as this HTML and name it "birthday-song.mp3" -->
+  <audio id="birthday-music" loop preload="auto" autoplay playsinline>
+    <source src="birthday-song.mp3" type="audio/mpeg">
+  </audio>
+
 </head>
 <body>
 <div class="scene" id="scene">
@@ -72,8 +109,7 @@ box-shadow:0 1cqw 4cqw rgba(0,0,0,.4);animation:cardin .5s cubic-bezier(.3,1.5,.
   </svg>
 
   <div class="title"><b class="h">Happy</b><b class="b">Birthday</b></div>
-  <svg class="abs hat" viewBox="0 0 100 80"><path d="M10 70 Q45 -5 90 60 Z" fill="#f26b63" stroke="#2a1a1a" stroke-width="5" stroke-linejoin="round"/><circle cx="78" cy="14" r="7" fill="#2a1a1a"/><path d="M5 72 Q50 82 92 62" stroke="#2a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
-
+  
   <button class="abs date" id="dateBtn"><span class="star">★</span><span id="dateTxt">06 March 1998</span><span class="star">★</span></button>
 
   <div class="abs balloon" style="right:3cqw;top:12cqw;animation-delay:-1s"></div>
@@ -81,44 +117,57 @@ box-shadow:0 1cqw 4cqw rgba(0,0,0,.4);animation:cardin .5s cubic-bezier(.3,1.5,.
   <div class="abs balloon" style="right:38cqw;top:15cqw;background:#f7a3a8"></div>
 
   <div class="abs ring">
-    <svg viewBox="0 0 200 200" id="bearBig"><use href="#bear"/></svg>
+    <img src="gift box.jpg" class="circle-img">
   </div>
-  <button class="abs name" id="nameBtn">Cutie</button>
+  <button class="abs name" id="nameBtn">Open your Gift</button>
 
   <div class="dim" id="dim">
     <div class="card">
-      <h3>To you <span style="color:#f26b8a">♥</span></h3>
+      <h3>To <span style="color:#f26b8a">Yan Paing</span></h3>
       <button class="x" id="x" aria-label="Close">×</button>
-      <div class="photo"><svg viewBox="0 0 200 200"><use href="#bear"/></svg></div>
-      <div class="right"><span class="pal">🦔</span>You<small id="msg">Wishing you a day full of joy &amp; cake!</small></div>
+      <div class="photo"><img src="BD.jpg" style="max-width:100%; height: auto;"></div>
+      <div class="right"><span class="pal"></span>Dear Friend,<small id="msg">Wishing you a day full of joy &amp; cake!</small></div>
     </div>
   </div>
 </div>
 
-<!-- bear drawing -->
-<svg width="0" height="0" style="position:absolute"><defs>
-<g id="bear" stroke="#4a2a18" stroke-width="3" stroke-linejoin="round">
-  <ellipse cx="95" cy="145" rx="42" ry="40" fill="#b8703c"/>
-  <ellipse cx="95" cy="152" rx="26" ry="28" fill="#f0c89a" stroke="none"/>
-  <circle cx="62" cy="78" r="14" fill="#b8703c"/><circle cx="128" cy="78" r="14" fill="#b8703c"/>
-  <circle cx="62" cy="78" r="7" fill="#f0c89a" stroke="none"/><circle cx="128" cy="78" r="7" fill="#f0c89a" stroke="none"/>
-  <circle cx="95" cy="100" r="40" fill="#b8703c"/>
-  <ellipse cx="95" cy="112" rx="17" ry="13" fill="#f0c89a"/>
-  <circle cx="80" cy="96" r="4" fill="#2a1a1a" stroke="none"/><circle cx="110" cy="96" r="4" fill="#2a1a1a" stroke="none"/>
-  <ellipse cx="95" cy="106" rx="5" ry="3.5" fill="#2a1a1a" stroke="none"/>
-  <path d="M88 116 Q95 123 102 116" fill="none"/>
-  <path d="M82 66 L100 30 L118 66 Z" fill="#6fb6e8"/><circle cx="100" cy="28" r="5" fill="#ffd166"/>
-  <path d="M130 140 Q150 128 160 128" stroke="#b8703c" stroke-width="16" stroke-linecap="round" fill="none"/>
-  <path d="M130 140 Q150 128 160 128" stroke="#4a2a18" stroke-width="3" stroke-linecap="round" fill="none" opacity=".0"/>
-  <rect x="146" y="112" width="40" height="18" rx="4" fill="#f7a3a8"/><rect x="146" y="106" width="40" height="8" rx="4" fill="#fff"/>
-  <path d="M155 106v-10M166 106v-12M177 106v-10" stroke="#ffd166" stroke-width="3"/>
-  <path d="M60 140 Q50 150 58 160" stroke="#b8703c" stroke-width="14" stroke-linecap="round" fill="none"/>
-  <ellipse cx="75" cy="184" rx="14" ry="9" fill="#b8703c"/><ellipse cx="115" cy="184" rx="14" ry="9" fill="#b8703c"/>
-</g></defs></svg>
 
 <script>
+
+   /* =========================================
+       BIRTHDAY MUSIC
+    ========================================= */
+
+    const birthdayMusic =
+      document.getElementById("birthday-music");
+
+    let musicStarted = false;
+
+    // Try to start the birthday song immediately when the page opens.
+    // Modern browsers may block audible autoplay until the visitor interacts
+    // with the page, so we silently retry on the first tap/click.
+    async function startBirthdayMusic() {
+      if (musicStarted) return;
+
+      try {
+        birthdayMusic.volume = 0.35;
+        await birthdayMusic.play();
+        musicStarted = true;
+      } catch (error) {
+        // Autoplay was blocked by the browser. The first interaction will retry.
+      }
+    }
+
+    // Attempt autoplay as soon as the page is ready.
+    window.addEventListener("load", startBirthdayMusic);
+
+    // Fallback for browsers that block autoplay. No button is needed.
+    ["click", "touchstart", "pointerdown", "keydown"].forEach(eventName => {
+      document.addEventListener(eventName, startBirthdayMusic, { once: true, passive: true });
+    });
+
 // ===== EDIT THESE =====
-var CONFIG = { date: "06 March 1998", name: "Cutie", message: "Wishing you a day full of joy & cake!" };
+var CONFIG = { date: "27 October 1999", name: "Open your Gift", message: "Wishing you a wonderful day filled with joy, laughter, and everything your heart desires!  I hope this new year of your life brings you endless happiness, good health, success,exciting adventures, and everything you've been wishing for." };
 // ======================
 var q = new URLSearchParams(location.search);
 if (q.get("date")) CONFIG.date = q.get("date");
@@ -154,12 +203,42 @@ function confetti() {
 }
 setInterval(confetti, 220);
 var card = document.querySelector(".right");
+
+var confettiColors = [
+  "#f26b63",
+  "#f7a3a8",
+  "#ffd166",
+  "#6fb6e8",
+  "#8bd17c",
+  "#c9a7eb"
+];
+
 setInterval(function () {
   if (!dim.classList.contains("on")) return;
-  var h = document.createElement("span"); h.className = "heart"; h.textContent = "♥";
-  h.style.cssText = "left:" + Math.random() * 80 + "%;font-size:" + (1.5 + Math.random() * 2) + "cqw";
-  card.appendChild(h); setTimeout(function () { h.remove(); }, 3000);
-}, 250);
+
+  var c = document.createElement("span");
+  c.className = "heart";
+
+  var size = 0.6 + Math.random() * 0.8;
+  var color = confettiColors[
+    Math.random() * confettiColors.length | 0
+  ];
+
+  c.style.cssText =
+    "left:" + Math.random() * 85 + "%;" +
+    "width:" + size + "cqw;" +
+    "height:" + (size * 1.5) + "cqw;" +
+    "background:" + color + ";" +
+    "animation-duration:" + (2 + Math.random() * 2) + "s;" +
+    "animation-delay:" + (Math.random() * 0.5) + "s;";
+
+  card.appendChild(c);
+
+  setTimeout(function () {
+    c.remove();
+  }, 4500);
+
+}, 180);
 
 // open / close card
 var dim = document.getElementById("dim");
