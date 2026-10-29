@@ -278,7 +278,8 @@ button:active {
 
   <section class="card">
     <div class="heart">♡</div>
-    <div class="card-label">WITH HEARTFELT APPRECIATION</div>
+    <div class="card-label" id="cardTitle">
+      WITH HEARTFELT APPRECIATION</div>
 
     <h2 id="name">Dear Team Member</h2>
 
@@ -396,7 +397,7 @@ const people = [
 
 အစ်မအတွက်ရော Team အတွက်ပါ အင်အားဖြစ်ရပါတယ်။
 
-ပြန်လာပေးတဲ့အတွက်ကျေးဇူးတင်ပါတယ်။ - ချို
+ပြန်လာပေးတဲ့အတွက်ကျေးဇူးတင်ပါတယ်။ - ချို`,
     quote: "“A team is better with you in it.”"
   },
   {
@@ -549,6 +550,7 @@ const messageEl = document.getElementById("message");
 const quoteEl = document.getElementById("quote");
 const statusEl = document.getElementById("status");
 const cardEl = document.querySelector(".card");
+  const titleEl = document.getElementById("cardTitle");
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
@@ -569,7 +571,7 @@ nameForm.addEventListener("submit", function (event) {
       "Sorry, we couldn't find your card. Please check your name and try again.";
     return;
   }
-
+titleEl.textContent = person.title;
   nameEl.textContent = person.name;
   messageEl.textContent = person.message;
   quoteEl.textContent = person.quote;
