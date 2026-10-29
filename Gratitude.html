@@ -87,7 +87,9 @@ select {
 
 .card {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  height: auto;
+  width: 100%;
   background: var(--paper);
   border: 1px solid #e8ddc9;
   border-radius: 5px;
@@ -140,7 +142,9 @@ select {
   font-size: 13px;
   line-height: 2.15;
   color: #625f53;
-  white-space: pre-line;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .quote {
